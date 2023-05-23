@@ -1,7 +1,7 @@
 Documentation query app
 =======================
 
-This is a Shiny for Python application which allows you to ask questions about a set of documents.
+This is a Shiny for Python application which allows you to ask questions about a set of documents. It uses the [chatstream](https://github.com/wch/chatstream/) package to query the OpenAI API.
 
 First, install some Python packages:
 
@@ -9,7 +9,20 @@ First, install some Python packages:
 pip install -r requirements.txt
 ```
 
-Then you must first load a set of text/markdown/PDF files into a vector database, using `doc_db.py` script.
+Then load at least one set of text/markdown/PDF files into a vector database, using `doc_db.py` script. This will save the documents in a database in a directory named `doc_db/`.
+
+The syntax is:
+
+```
+./doc_db.py add-dir <collection name> <directory> <file pattern>
+```
+
+For example:
+
+```bash
+./doc_db.py add-dir admin-guide ../docs/admin "*.qmd"
+./doc_db.py add-dir user-guide ../docs/user "*.qmd"
+```
 
 After the documents are loaded into the vector database, they can be queried using the Shiny app.
 
